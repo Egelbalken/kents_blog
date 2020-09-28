@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+  <div class="centerstage jumbotron">
+
+  <h2>Var snäll att logga in:</h2>
+  <h3>(Du måste vara "SuperUser", Kontakta sidans administratör.)</h3>
+  {% if form.errors%}
+    <p>Ditt användarnamn och lösenord machar inte varandra! Försök igen.</p>
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+        {{form.as_p}}
+
+        <input type="submit" class='btn btn-primary' value="Logga In" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+  </div>
+{% endblock %}
